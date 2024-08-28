@@ -1,0 +1,12 @@
+EX:2
+Wheather finder
+cmd:
+start-dfs.cmd
+start-yarn.cmd
+jps
+hadoop fs -mkdir /user/ex2
+hadoop fs -put -f D:\NIKHIL_179\sem_7\DA\LAB\EX_2_WEATHER\weather.csv /user/ex2
+hdfs dfs -rm -r /user/ex2/output-- to delete the already present output if any....
+hadoop jar C:\hadoop\share\hadoop\tools\lib\hadoop-streaming-3.3.6.jar -input /user/ex2/weather.csv -output /user/ex2/output -mapper "python D:\NIKHIL_179\sem_7\DA\LAB\EX_2_WEATHER\mapper2.py" -reducer "python D:\NIKHIL_179\sem_7\DA\LAB\EX_2_WEATHER\reducer2.py"
+hadoop fs -ls /user/ex2/output/
+hadoop fs -cat /user/ex2/output/part-00000
